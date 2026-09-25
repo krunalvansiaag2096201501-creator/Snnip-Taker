@@ -1,0 +1,38 @@
+{
+  "name": "snip-taker",
+  "version": "1.0.0",
+  "description": "A fast local snippet library for Windows.",
+  "main": "main.js",
+  "author": "Snip Taker",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^32.2.7",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.sniptaker.app",
+    "productName": "Snip Taker",
+    "directories": { "output": "dist" },
+    "files": ["main.js", "index.html", "styles.css", "renderer.js", "package.json"],
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "artifactName": "Snip-Taker-Setup-${version}-${arch}.${ext}",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "portable": {
+      "artifactName": "Snip-Taker-${version}-${arch}.${ext}"
+    }
+  }
+}
